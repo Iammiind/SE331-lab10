@@ -22,15 +22,15 @@ import java.util.Optional;
 @Builder
 public class Student {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    long id;
-    String studentId;
-    String name;
-    String surname;
-    double gpa;
-    String image;
-    boolean feature;
-    int penAmount;
+    @GeneratedValue(strategy = GenerationType.AUTO)    
+    long id;    
+    String studentId;    
+    String name;    
+    String surname;    
+    double gpa;    
+    String image;    
+    boolean feature;    
+    int penAmount;    
     String description;
     @ManyToMany
     List<Course> enrolledCourse = new ArrayList<>();
@@ -41,6 +41,5 @@ public class Student {
         return enrolledCourse;
 
     }
-
 
 }
