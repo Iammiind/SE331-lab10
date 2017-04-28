@@ -55,10 +55,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-//                .antMatchers("/course").permitAll()
-//                /** all
+                .antMatchers(HttpMethod.POST, "/course").hasRole("ADMIN")
+                .antMatchers("/course").permitAll()
+                .antMatchers(HttpMethod.POST, "/student").hasRole("ADMIN")
                 .antMatchers("/student/**").permitAll()
-                .antMatchers("/auth/**", "/h2-console/**", "/refresh").permitAll()
+                .antMatchers("/auth/**", "/h2-console/**", "/refresh", "/student/images/**").permitAll()
                 .anyRequest().authenticated();
 
         httpSecurity.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
